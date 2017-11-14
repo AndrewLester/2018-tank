@@ -10,24 +10,30 @@ class Drive:
     """Encapsulates wpilib.RobotDrive"""
     dashboard = NetworkTable
     robot_drive = RobotDrive
+    leftStick = Joystick
+    rightStick = Joystick
 
     def __init__(self):
-        self.yaw = self.
+        self.angle_left = 0
+        self.angle_right = 0
 
     def stop(self):
-        self.move(angle_deg=0, power=0)
+        self.move(angle_left=0, angle_right=0)
 
-    def move(self, angle_deg: int=0, angle_rad: float=0, power=0):
-        pass
+    def move(self, angle_left=None, angle_right=None):
+        self.angle_left = angle_left
+        self.angle_right = angle_right
+
+    def stick_move(self, left_stick, right_stick):
+        self.angle_left = left_stick.getY()
+        self.angle_right = right_stick.getY()
+
 
     def execute(self):
         """Executes current speed and rotation values"""
-        if(self.isTheRobotBackwards):
-            self.robot_drive.arcadeDrive(-self.y, -self.rotation / 2, self.squaredInputs)
-        else:
-            self.robot_drive.arcadeDrive(self.y, -self.rotation * self.halfRotation, self.squaredInputs)
+        if self.angle_left is None and self.angle_right is None:
+            return
 
-
-        # by default, the robot shouldn't move
-        self.y = 0
-        self.rotation = 0
+        self.robot_drive.tankDrive(leftValue=self.leftStick, rightValue=self.rightStick)
+        self.angle_left = None
+        self.angle_right = None

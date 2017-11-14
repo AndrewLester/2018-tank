@@ -15,12 +15,11 @@ class Robot(MagicRobot):
 
     def createObjects(self):
         self.dashboard = NetworkTable.getTable('SmartDashboard')
-        self.drive_dashboard = self.dashboard
-        self.drive_robot_drive = wpilib.RobotDrive
-
         self.navX = navx.AHRS.create_spi()
         self.robot_drive = wpilib.RobotDrive(self.lf_motor, self.lr_motor, self.rf_motor, self.rr_motor)
 
+        self.left_stick = wpilib.Joystick(0)
+        self.right_stick = wpilib.Joystick(1)
     def autonomous(self):
         """pass for now"""
         pass
