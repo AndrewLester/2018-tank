@@ -9,9 +9,9 @@ WHEEL_DIAMETER = 7.639
 class Drive:
     """Encapsulates wpilib.RobotDrive"""
     dashboard = NetworkTable
-    robot_drive = RobotDrive
-    leftStick = Joystick
-    rightStick = Joystick
+    robot_drive = wpilib.RobotDrive
+    left_stick = wpilib.joystick.Joystick
+    right_stick = wpilib.joystick.Joystick
 
     def __init__(self):
         self.angle_left = 0
@@ -34,6 +34,6 @@ class Drive:
         if self.angle_left is None and self.angle_right is None:
             return
 
-        self.robot_drive.tankDrive(leftValue=self.leftStick, rightValue=self.rightStick)
+        self.robot_drive.tankDrive(leftValue=self.left_stick.getY(), rightValue=self.right_stick.getY())
         self.angle_left = None
         self.angle_right = None

@@ -10,16 +10,24 @@ from robotpy_ext.common_drivers import navx
 
 from networktables.networktable import NetworkTable
 
-class Robot(MagicRobot):
+class Robot(magicbot.MagicRobot):
     drive = drive.Drive
 
     def createObjects(self):
         self.dashboard = NetworkTable.getTable('SmartDashboard')
+        self.drive_dashboard = self.dashboard
         self.navX = navx.AHRS.create_spi()
-        self.robot_drive = wpilib.RobotDrive(self.lf_motor, self.lr_motor, self.rf_motor, self.rr_motor)
 
-        self.left_stick = wpilib.Joystick(0)
-        self.right_stick = wpilib.Joystick(1)
+        self.drive_lf_motor = wpilib.Victor(0)
+        self.drive_lr_motor = wpilib.Victor(1)
+        self.drive_rf_motor = wpilib.Victor(2)
+        self.drive_rr_motor = wpilib.Victor(3)
+
+        self.robot_drive = wpilib.RobotDrive(self.drive_lf_motor, self.drive_lr_motor, self.drive_rf_motor, self.drive_rr_motor)
+
+        self.drive_left_stick = wpilib.joystick.Joystick(0)
+        self.drive_right_stick = wpilib.joystick.Joystick(1)
+
     def autonomous(self):
         """pass for now"""
         pass
