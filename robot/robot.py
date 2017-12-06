@@ -31,7 +31,11 @@ class Robot(magicbot.MagicRobot):
     def autonomous(self):
         """pass for now"""
         pass
-
+    
+    def teleopInit(self):
+        """Do when teleoperated mode is started."""
+        pass
+    
     def disabledInit(self):
         self.drive.stop()
 
