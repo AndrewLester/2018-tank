@@ -45,6 +45,7 @@ class Robot(magicbot.MagicRobot):
         pass
 
     def disabledInit(self):
+        """Do when disabled"""
         self.drive.stop()
 
 if __name__ == '__main__':
