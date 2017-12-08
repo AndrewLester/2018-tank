@@ -25,8 +25,8 @@ class Robot(magicbot.MagicRobot):
 
         self.robot_drive = wpilib.RobotDrive(self.drive_lf_motor, self.drive_lr_motor, self.drive_rf_motor, self.drive_rr_motor)
 
-        self.drive_left_stick = wpilib.joystick.Joystick(0)
-        self.drive_right_stick = wpilib.joystick.Joystick(1)
+        self.left_stick = wpilib.joystick.Joystick(0)
+        self.right_stick = wpilib.joystick.Joystick(1)
 
     def autonomous(self):
         """pass for now"""
