@@ -36,6 +36,10 @@ class Robot(magicbot.MagicRobot):
         """Do when teleoperated mode is started."""
         pass
     
+    def disabledPeriodic(self):
+        """Repeat periodically while robot is disabled. Usually emptied. Sometimes used to easily test sensors and other things."""
+        pass
+    
     def disabledInit(self):
         self.drive.stop()
 
